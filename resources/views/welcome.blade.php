@@ -66,8 +66,12 @@
     <body>
         <div class="flex-center position-ref full-height">
                 <div class="top-right links">
-                    <a href="{{url('/login')}}">Login</a>
-                    <a href="{{url('/register')}}">Register</a>
+                    {{--<a href="{{url('/login')}}">Login</a>--}}
+                    {{--<a href="{{url('/register')}}">Register</a>--}}
+                    <a href="http://igg.anjingdehua.cn/login">Login</a>
+                    <a href="http://igg.anjingdehua.cn/register">Register</a>
+                    {{--<a href="http://vm.passport2.com/login">Login</a>--}}
+                    {{--<a href="http://vm.passport2.com/register">Register</a>--}}
                 </div>
 
             <div class="content">
