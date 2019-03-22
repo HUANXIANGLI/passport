@@ -129,36 +129,21 @@ class IndexController extends Controller
     {
         $email = $request->input('email');
         $pwd = $request->input('pwd');
-        $where=[
-            'email'=>$email
+        $data=[
+            'email'=>$email,
+            'pwd'=>$pwd
         ];
-        $userInfo=UserModel::where($where)->first();
-        if(empty($userInfo)){
-            $response = [
-                'errno' =>  40001,
-                'msg'   =>  '用户名不存在'
-            ];
-            return $response;
-        }
-        $pas = $userInfo->pwd;
-        if(password_verify($pwd,$pas)){
-            $id = $userInfo->id;
-            $key = 'api:token:' . $id;
-            $token = substr(md5(time() + $id + rand(1000,9999)),10,20);
-            Redis::set($key,$token);
-            Redis::setTimeout($key,60*60*24*7);
-            $response = [
-                'errno' =>  0,
-                'msg'   =>  '登陆成功',
-                'token' =>  $token
-            ];
-        }else{
-            $response = [
-                'errno' =>  40002,
-                'msg'   =>  '登录失败'
-            ];
-        }
-        return $response;
+        //echo json_encode($data);die;
+        $url='http://igg.anjingdehua.cn/apiLogin';
+        $ch=curl_init($url);
+        curl_setopt($ch,CURLOPT_HEADER,0);
+        curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
+        curl_setopt($ch,CURLOPT_POST,1);
+        curl_setopt($ch,CURLOPT_POSTFIELDS,$data);
+        $res=curl_exec($ch);
+        curl_close($ch);
+        var_dump($res);
+
     }
 
     public function apiRegister(Request $request)
