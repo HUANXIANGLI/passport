@@ -142,6 +142,8 @@ class IndexController extends Controller
         curl_setopt($ch,CURLOPT_POSTFIELDS,$data);
         $res=curl_exec($ch);
         curl_close($ch);
+        header('Content-type:text/json');     //这句是重点，它告诉接收数据的对象此页面输出的是json数据；
+
         echo json_encode($res);
 
     }
