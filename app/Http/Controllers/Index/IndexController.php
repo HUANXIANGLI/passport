@@ -142,7 +142,7 @@ class IndexController extends Controller
         curl_setopt($ch,CURLOPT_POSTFIELDS,$data);
         $res=curl_exec($ch);
         curl_close($ch);
-        echo json_decode($res,true);
+        return  json_decode($res,true);
 
     }
 
