@@ -23,7 +23,7 @@ Route::post('apiLogin','Index\IndexController@apiLogin');
 //注册
 Route::post('register','Index\IndexController@register');
 Route::get('register','Index\IndexController@registerView');
-Route::any('apiRegister','Index\IndexController@apiRegister');
+Route::get('apiRegister','Index\IndexController@apiRegister');
 
 
 
